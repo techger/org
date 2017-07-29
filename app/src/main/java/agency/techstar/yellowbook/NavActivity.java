@@ -1,5 +1,7 @@
 package agency.techstar.yellowbook;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -18,14 +20,13 @@ import android.widget.TextView;
 
 public class NavActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private TextView mTextMessage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -36,7 +37,6 @@ public class NavActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
@@ -105,13 +105,22 @@ public class NavActivity extends AppCompatActivity
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                    FragmentManager manager = getFragmentManager();
+                    FragmentTransaction transaction = manager.beginTransaction();
+                    transaction.replace(R.id.content, HomeFragment.newInstance()); // newInstance() is a static factory method.
+                    transaction.commit();
                     return true;
                 case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                    FragmentManager newsManager = getFragmentManager();
+                    FragmentTransaction transaction1 = newsManager.beginTransaction();
+                    transaction1.replace(R.id.content, NewsFragment.newInstance()); // newInstance() is a static factory method.
+                    transaction1.commit();
                     return true;
                 case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                    FragmentManager projectManager = getFragmentManager();
+                    FragmentTransaction transaction2 = projectManager.beginTransaction();
+                    transaction2.replace(R.id.content, ProjectFragment.newInstance()); // newInstance() is a static factory method.
+                    transaction2.commit();
                     return true;
             }
             return false;
