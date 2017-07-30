@@ -10,7 +10,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_splash">
+    tools:showIn="@layout/activity_splash"
+    android:background="@color/yellow" >
 
     <ImageView
         android:layout_width="wrap_content"
@@ -19,7 +20,8 @@
         android:layout_marginTop="114dp"
         android:id="@+id/imageView2"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        />
 
     <TextView
         android:text="Yellow Book"

@@ -16,11 +16,11 @@
         android:gravity="center"
         />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/my_recycler_view"
+    <GridView
+        android:id="@+id/simpleGridView"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
-        android:paddingTop="200dp"
-        android:scrollbars="vertical" />
+        android:layout_height="wrap_content"
+        android:numColumns="2"
+        android:layout_marginTop="200dp"/>
 
 </FrameLayout>
