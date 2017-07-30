@@ -16,6 +16,7 @@
     <string name="Home">Home fragment</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="title_activity_baiguullaga">BaiguullagaActivity</string>
+    <string name="title_activity_about_us">AboutUsActivity</string>
 
 
 </resources>
