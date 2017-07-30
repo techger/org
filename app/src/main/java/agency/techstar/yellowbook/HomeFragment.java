@@ -48,7 +48,7 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home, container, false);
         // Inflate the layout for this fragment
@@ -65,10 +65,20 @@ public class HomeFragment extends Fragment {
         birdList.add(new Item("Bird 2",R.drawable.ic_2));
         birdList.add(new Item("Bird 3",R.drawable.ic_3));
         birdList.add(new Item("Bird 4",R.drawable.ic_4));
+        birdList.add(new Item("Bird 1",R.drawable.ic_1));
+        birdList.add(new Item("Bird 2",R.drawable.ic_2));
+        birdList.add(new Item("Bird 3",R.drawable.ic_3));
+        birdList.add(new Item("Bird 4",R.drawable.ic_4));
 
         MyAdapter myAdapter=new MyAdapter(getActivity(),R.layout.grid_item,birdList);
         simpleList.setAdapter(myAdapter);
 
+        simpleList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(getActivity(),BaiguullagaActivity.class));
+            }
+        });
 
         for(String name : url_maps.keySet()){
 
@@ -94,6 +104,7 @@ public class HomeFragment extends Fragment {
         mDemoSlider.setDuration(4000);
 
         return view;
+
     }
 
 }
