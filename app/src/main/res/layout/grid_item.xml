@@ -9,7 +9,7 @@
     card_view:cardElevation="3sp"
     card_view:cardUseCompatPadding="false"
 
-    
+
     >
 
     <LinearLayout
