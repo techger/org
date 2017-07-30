@@ -2,11 +2,15 @@ package agency.techstar.yellowbook;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.SearchView;
+import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,6 +24,9 @@ import android.widget.TextView;
 
 public class NavActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private SearchView searchView;
+    private MenuItem searchMenuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +62,17 @@ public class NavActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.nav, menu);
+
+            SearchManager searchManager = (SearchManager)
+                    getSystemService(Context.SEARCH_SERVICE);
+
+            searchMenuItem = menu.findItem(R.id.action_search);
+            searchView = (SearchView) searchMenuItem.getActionView();
+
+            searchView.setSearchableInfo(searchManager.
+                    getSearchableInfo(getComponentName()));
+            searchView.setSubmitButtonEnabled(true);
+
         return true;
     }
 

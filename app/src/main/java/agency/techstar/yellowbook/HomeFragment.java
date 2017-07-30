@@ -71,6 +71,7 @@ public class HomeFragment extends Fragment {
 
 
         for(String name : url_maps.keySet()){
+
             TextSliderView textSliderView = new TextSliderView(getActivity());
             // initialize a SliderLayout
             textSliderView
