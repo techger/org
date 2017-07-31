@@ -21,14 +21,14 @@ import org.json.JSONException;
 public class ProjectAdapter extends BaseAdapter {
 
     final Context context;
-    final JSONArray products;
+    final JSONArray organizations;
     public ImageLoader imageLoader;
 
     private LayoutInflater inflater = null;
 
-    public ProjectAdapter(Context context, JSONArray products) {
+    public ProjectAdapter(Context context, JSONArray organizations) {
         this.context = context;
-        this.products = products;
+        this.organizations = organizations;
         imageLoader = new ImageLoader(context);
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -36,13 +36,13 @@ public class ProjectAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return products.length();
+        return organizations.length();
     }
 
     @Override
     public Object getItem(int position) {
         try {
-            return products.getJSONObject(position);
+            return organizations.getJSONObject(position);
         } catch (JSONException e){
             e.printStackTrace();
         }
@@ -58,20 +58,20 @@ public class ProjectAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         View vi = convertView;
         if(vi == null)
-            vi = inflater.inflate(R.layout.grid_item, null);
+            vi = inflater.inflate(R.layout.organization_item, null);
 
-        TextView pName = (TextView) vi.findViewById(R.id.textViewG);
-        ImageView pImage  = (ImageView) vi.findViewById(R.id.imageViewG);
+        TextView pName = (TextView) vi.findViewById(R.id.textOrg);
+        ImageView pImage  = (ImageView) vi.findViewById(R.id.imgOrg);
 
         try {
-            pName.setText(products.getJSONObject(position).getString("pro_name"));
-            imageLoader.DisplayImage(AppConfig.AdminPageURL+"/upload/images/"+products.getJSONObject(position).getString("pro_image"), pImage);
+            pName.setText(organizations.getJSONObject(position).getString("pro_name"));
+            imageLoader.DisplayImage(AppConfig.AdminPageURL+"/upload/images/"+organizations.getJSONObject(position).getString("pro_image"), pImage);
             vi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent iDetail = new Intent(context, BaiguullagaActivity.class);
                     try {
-                        iDetail.putExtra("product_id", products.getJSONObject(position).getString("id"));
+                        iDetail.putExtra("organization_id", organizations.getJSONObject(position).getString("id"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

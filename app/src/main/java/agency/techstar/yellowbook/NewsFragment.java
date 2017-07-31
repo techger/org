@@ -93,8 +93,8 @@ public class NewsFragment extends Fragment {
                 final String res = response.body().string();
                 mHandler.post(() -> {
                     try {
-                        JSONObject prod = new JSONObject(String.valueOf("{product=" + res+"}"));
-                        JSONArray prodItems = prod.getJSONArray("product");
+                        JSONObject prod = new JSONObject(String.valueOf("{org=" + res+"}"));
+                        JSONArray prodItems = prod.getJSONArray("org");
                         Log.e(TAG, prodItems + "");
                         prgLoading.setVisibility(View.GONE);
                         homeItemList.setAdapter(new ProjectAdapter(getActivity(), prodItems));
