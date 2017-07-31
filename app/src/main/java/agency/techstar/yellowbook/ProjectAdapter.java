@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,14 +65,15 @@ public class ProjectAdapter extends BaseAdapter {
         ImageView pImage  = (ImageView) vi.findViewById(R.id.imgOrg);
 
         try {
-            pName.setText(organizations.getJSONObject(position).getString("pro_name"));
-            imageLoader.DisplayImage(AppConfig.AdminPageURL+"/upload/images/"+organizations.getJSONObject(position).getString("pro_image"), pImage);
+            pName.setText(organizations.getJSONObject(position).getString("org_name"));
+            imageLoader.DisplayImage(AppConfig.AdminPageURL+"/upload/images/"+organizations.getJSONObject(position).getString("org_image"), pImage);
             vi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent iDetail = new Intent(context, BaiguullagaActivity.class);
                     try {
-                        iDetail.putExtra("organization_id", organizations.getJSONObject(position).getString("id"));
+                        Toast.makeText(context, organizations.getJSONObject(position).getString("org_name"), Toast.LENGTH_SHORT).show();
+                        iDetail.putExtra("organization_id", organizations.getJSONObject(position).getString("org_id"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
