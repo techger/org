@@ -11,12 +11,20 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        jackOptions {
+            enabled true
+        }
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
     }
 }
 
@@ -39,5 +47,6 @@ dependencies {
     compile 'com.github.medyo:android-about-page:1.2.1'
     compile 'com.google.android.gms:play-services-maps:11.0.1'
     compile 'com.google.android.gms:play-services-location:11.0.1'
+    compile 'com.squareup.okhttp3:okhttp:3.8.1'
     testCompile 'junit:junit:4.12'
 }

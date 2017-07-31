@@ -1,16 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="agency.techstar.yellowbook.NewsFragment">
+    android:paddingTop="58dp"
+    android:paddingBottom="58dp"
+    android:id="@+id/news_fragment">
 
-
-    <GridView
-        android:id="@+id/NewsGridView"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshHome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:numColumns="2"
-        />
+        android:padding="3dp">
+        <GridView
+            android:id="@+id/newsItemList"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null"
+            android:numColumns="2"
+            android:visibility="gone" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 
-</FrameLayout>
+    <ProgressBar
+        android:id="@+id/newsLoading"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <TextView
+        android:id="@+id/newsTxtAlert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Өгөгдөл олдсонгүй"
+        android:textSize="14sp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
+</RelativeLayout>

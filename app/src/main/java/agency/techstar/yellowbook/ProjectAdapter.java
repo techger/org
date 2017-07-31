@@ -64,8 +64,8 @@ public class ProjectAdapter extends BaseAdapter {
         ImageView pImage  = (ImageView) vi.findViewById(R.id.imageViewG);
 
         try {
-            pName.setText(products.getJSONObject(position).getString("name"));
-            imageLoader.DisplayImage(AppConfig.AdminPageURL+"/uploads/product_photos/"+products.getJSONObject(position).getString("folder"), pImage);
+            pName.setText(products.getJSONObject(position).getString("pro_name"));
+            imageLoader.DisplayImage(AppConfig.AdminPageURL+"/upload/images/"+products.getJSONObject(position).getString("pro_image"), pImage);
             vi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
