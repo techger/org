@@ -20,12 +20,12 @@
             android:orientation="vertical"
             android:padding="5dp">
 
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/imageViewG"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_1" />
+                app:srcCompat="@drawable/ic_image" />
 
             <RelativeLayout
                 android:id="@+id/lytText"

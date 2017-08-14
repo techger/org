@@ -1,5 +1,6 @@
 package agency.techstar.yellowbook;
 import android.content.Context;
+import android.support.v7.widget.AppCompatImageView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +33,7 @@ public class MyAdapter extends ArrayAdapter<Item> {
             v = inflater.inflate(R.layout.grid_item, null);
 
         TextView textView = (TextView) v.findViewById(R.id.textViewG);
-        ImageView imageView = (ImageView) v.findViewById(R.id.imageViewG);
+        AppCompatImageView imageView = (AppCompatImageView) v.findViewById(R.id.imageViewG);
         textView.setText(birdList.get(position).getbirdName());
         imageView.setImageResource(birdList.get(position).getbirdImage());
         return v;

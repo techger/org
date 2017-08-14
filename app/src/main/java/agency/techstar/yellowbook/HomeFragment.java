@@ -61,14 +61,14 @@ public class HomeFragment extends Fragment {
         url_maps.put("House of Cards", "http://cdn3.nflximg.net/images/3093/2043093.jpg");
         url_maps.put("Game of Thrones", "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
 
-        birdList.add(new Item("Bird 1",R.drawable.ic_1));
-        birdList.add(new Item("Bird 2",R.drawable.ic_2));
-        birdList.add(new Item("Bird 3",R.drawable.ic_3));
-        birdList.add(new Item("Bird 4",R.drawable.ic_4));
-        birdList.add(new Item("Bird 1",R.drawable.ic_1));
-        birdList.add(new Item("Bird 2",R.drawable.ic_2));
-        birdList.add(new Item("Bird 3",R.drawable.ic_3));
-        birdList.add(new Item("Bird 4",R.drawable.ic_4));
+        birdList.add(new Item("Bird 1",R.drawable.ic_image));
+        birdList.add(new Item("Bird 2",R.drawable.ic_image));
+        birdList.add(new Item("Bird 3",R.drawable.ic_image));
+        birdList.add(new Item("Bird 4",R.drawable.ic_image));
+        birdList.add(new Item("Bird 1",R.drawable.ic_image));
+        birdList.add(new Item("Bird 2",R.drawable.ic_image));
+        birdList.add(new Item("Bird 3",R.drawable.ic_image));
+        birdList.add(new Item("Bird 4",R.drawable.ic_image));
 
         MyAdapter myAdapter=new MyAdapter(getActivity(),R.layout.grid_item,birdList);
         simpleList.setAdapter(myAdapter);

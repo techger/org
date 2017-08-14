@@ -25,7 +25,7 @@ public class AboutUsActivity extends AppCompatActivity {
 
         View aboutPage = new AboutPage(this)
                 .isRTL(false)
-                .setImage(R.drawable.ic_2)
+                .setImage(R.drawable.ic_image)
                 .addItem(new Element().setTitle("Version 6.2"))
                 .addItem(adsElement)
                 .addGroup("Connect with us")
@@ -48,7 +48,7 @@ public class AboutUsActivity extends AppCompatActivity {
         Element copyRightsElement = new Element();
         final String copyrights = String.format(getString(R.string.title_activity_baiguullaga), Calendar.getInstance().get(Calendar.YEAR));
         copyRightsElement.setTitle(copyrights);
-        copyRightsElement.setIconDrawable(R.drawable.ic_1);
+        copyRightsElement.setIconDrawable(R.drawable.ic_image);
         copyRightsElement.setIconTint(mehdi.sakout.aboutpage.R.color.about_item_icon_color);
         copyRightsElement.setIconNightTint(android.R.color.white);
         copyRightsElement.setGravity(Gravity.CENTER);

@@ -3,6 +3,7 @@ package agency.techstar.yellowbook;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,7 +63,7 @@ public class ProjectAdapter extends BaseAdapter {
             vi = inflater.inflate(R.layout.organization_item, null);
 
         TextView pName = (TextView) vi.findViewById(R.id.textOrg);
-        ImageView pImage  = (ImageView) vi.findViewById(R.id.imgOrg);
+        AppCompatImageView pImage  = (AppCompatImageView) vi.findViewById(R.id.imgOrg);
 
         try {
             pName.setText(organizations.getJSONObject(position).getString("org_name"));
