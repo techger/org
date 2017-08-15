@@ -84,8 +84,7 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
                         android:textSize="22sp"
-                        android:textStyle="bold"
-                        android:text="Sainuu?"/>
+                        android:textStyle="bold"/>
 
                     <TextView
                         android:id="@+id/txtSubText"
@@ -95,8 +94,7 @@
                         android:textColor="@color/textColorPrimary"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
-                        android:textSize="16sp"
-                        android:text="Sainuu? OGLOONI MEND."/>
+                        android:textSize="16sp"/>
 
                     <WebView
                         android:id="@+id/txtDescription"
