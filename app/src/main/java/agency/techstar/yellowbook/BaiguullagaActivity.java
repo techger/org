@@ -28,6 +28,19 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Picasso;
 
 import com.squareup.picasso.Picasso;
@@ -35,6 +48,7 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 
 import java.io.IOException;
+import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -45,7 +59,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
-public class BaiguullagaActivity extends AppCompatActivity {
+public class BaiguullagaActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     ImageView imgPreview;
     TextView txtText, txtSubText;
@@ -54,6 +68,8 @@ public class BaiguullagaActivity extends AppCompatActivity {
     CoordinatorLayout coordinatorLayout;
     Handler mHandler;
     String Project_image, Project_name, Project_description;
+    MapView mapView;
+    private GoogleMap googleMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,41 +88,24 @@ public class BaiguullagaActivity extends AppCompatActivity {
         txtDescription = (WebView) findViewById(R.id.txtDescription);
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_content);
         mHandler = new Handler(Looper.getMainLooper());
+        FloatingActionButton webbutton = (FloatingActionButton) findViewById(R.id.btnWeb);
 
-        FloatingActionButton webbutton = (FloatingActionButton)findViewById(R.id.btnWeb);
+        webbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(BaiguullagaActivity.this, WebActivity.class));
+            }
+        });
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.mapFragment);
 
-            webbutton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(BaiguullagaActivity.this, WebActivity.class));
-                }
-            });
-
-//        com.github.clans.fab.FloatingActionButton fab2 = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.send_sms);
-//        fab2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-//
-//                    return;
-//                }
-//                startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:99968096")));
-//            }
-//        });
-//
-//        com.github.clans.fab.FloatingActionButton fab3 = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.send_mail);
-//        fab3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
-
+        mapFragment.getMapAsync(this);
         Intent iGet = getIntent();
-        String project_id  = iGet.getStringExtra("project_id");
+        String project_id = iGet.getStringExtra("project_id");
 
         getProduct();
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -118,7 +117,7 @@ public class BaiguullagaActivity extends AppCompatActivity {
         }
     }
 
-    public void getProduct () {
+    public void getProduct() {
 
         Intent iGet = getIntent();
 
@@ -147,7 +146,7 @@ public class BaiguullagaActivity extends AppCompatActivity {
             public void onResponse(Call call, final Response response) throws IOException {
                 final String res = response.body().string();
 
-                Log.e("Res: ", ""+res);
+                Log.e("Res: ", "" + res);
 
                 mHandler.post(() -> {
                     try {
@@ -181,12 +180,35 @@ public class BaiguullagaActivity extends AppCompatActivity {
                         txtDescription.setBackgroundColor(Color.parseColor("#ffffff"));
                         txtDescription.getSettings().setDefaultTextEncodingName("UTF-8");
 
-                    } catch (Exception ex){
+                    } catch (Exception ex) {
                         ex.printStackTrace();
                     }
 
                 });
             }
         });
+    }
+
+    @Override
+    public void onMapReady(GoogleMap map) {
+
+        googleMap = map;
+
+        setUpMap();
+
+    }
+
+    public void setUpMap() {
+
+        googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            return;
+        }
+        googleMap.setMyLocationEnabled(true);
+        googleMap.setTrafficEnabled(true);
+        googleMap.setIndoorEnabled(true);
+        googleMap.setBuildingsEnabled(true);
+        googleMap.getUiSettings().setZoomControlsEnabled(true);
     }
 }
