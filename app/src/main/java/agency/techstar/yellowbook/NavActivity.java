@@ -47,6 +47,12 @@ public class NavActivity extends AppCompatActivity
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.content, HomeFragment.newInstance()); // newInstance() is a static factory method.
+        transaction.commit();
     }
 
     @Override

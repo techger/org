@@ -73,25 +73,34 @@ public class BaiguullagaActivity extends AppCompatActivity {
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_content);
         mHandler = new Handler(Looper.getMainLooper());
 
-        com.github.clans.fab.FloatingActionButton fab2 = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.send_sms);
-        fab2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+        FloatingActionButton webbutton = (FloatingActionButton)findViewById(R.id.btnWeb);
 
-                    return;
+            webbutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(BaiguullagaActivity.this, WebActivity.class));
                 }
-                startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:99968096")));
-            }
-        });
+            });
 
-        com.github.clans.fab.FloatingActionButton fab3 = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.send_mail);
-        fab3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+//        com.github.clans.fab.FloatingActionButton fab2 = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.send_sms);
+//        fab2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+//
+//                    return;
+//                }
+//                startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:99968096")));
+//            }
+//        });
+//
+//        com.github.clans.fab.FloatingActionButton fab3 = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.send_mail);
+//        fab3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
         Intent iGet = getIntent();
         String project_id  = iGet.getStringExtra("project_id");

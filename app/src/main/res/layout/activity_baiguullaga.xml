@@ -146,42 +146,34 @@
             app:srcCompat="@drawable/ic_share"
             app:borderWidth="0dp"
             app:fabSize="normal"
-
             />
 
-        <com.github.clans.fab.FloatingActionMenu
-            android:id="@+id/menu_red"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:paddingRight="10dp"
-            app:layout_collapseMode="pin"
-            android:paddingBottom="10dp"
-            android:paddingLeft="10dp"
-            fab:menu_labels_ellipsize="start"
-            fab:menu_labels_singleLine="true"
-            fab:menu_backgroundColor="#ccffffff"
-            fab:menu_fab_size="normal">
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnWeb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:layout_anchor="@+id/sclDetail"
+            app:layout_anchorGravity="left|bottom"
+            app:srcCompat="@drawable/ic_browser"/>
 
-            <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/send_sms"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_email"
-                fab:fab_size="normal"
-                fab:fab_label="huvaaltsax"/>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnCall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:layout_anchor="@+id/sclDetail"
+            app:layout_anchorGravity="bottom|center"
+            app:srcCompat="@drawable/ic_call" />
 
-            <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/send_mail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_email"
-                fab:fab_size="normal"
-                fab:fab_label="E-mail bichix" />
-
-        </com.github.clans.fab.FloatingActionMenu>
-
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:layout_anchor="@+id/sclDetail"
+            app:layout_anchorGravity="right|bottom"
+            app:srcCompat="@drawable/ic_email" />
     </android.support.design.widget.CoordinatorLayout>
 
 </RelativeLayout>
