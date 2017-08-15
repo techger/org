@@ -2,36 +2,42 @@ package agency.techstar.yellowbook;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class HomeFragment extends Fragment {
 
     private SliderLayout mDemoSlider;
     Context context;
     View view;
+    private Handler mHandler;
 
     public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
@@ -40,8 +46,6 @@ public class HomeFragment extends Fragment {
         return fragment;
     }
     GridView simpleList;
-    ArrayList birdList=new ArrayList<>();
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,30 +59,15 @@ public class HomeFragment extends Fragment {
         mDemoSlider = (SliderLayout) view.findViewById(R.id.slider);
         simpleList = (GridView) view.findViewById(R.id.simpleGridView);
 
+        mHandler = new Handler(Looper.getMainLooper()); // udaan hurdanii shalgax davtalt
+
         HashMap<String,String> url_maps = new HashMap<String, String>();
         url_maps.put("Hannibal", "http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg");
         url_maps.put("Big Bang Theory", "http://tvfiles.alphacoders.com/100/hdclearart-10.png");
         url_maps.put("House of Cards", "http://cdn3.nflximg.net/images/3093/2043093.jpg");
         url_maps.put("Game of Thrones", "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
 
-        birdList.add(new Item("Bird 1",R.drawable.ic_image));
-        birdList.add(new Item("Bird 2",R.drawable.ic_image));
-        birdList.add(new Item("Bird 3",R.drawable.ic_image));
-        birdList.add(new Item("Bird 4",R.drawable.ic_image));
-        birdList.add(new Item("Bird 1",R.drawable.ic_image));
-        birdList.add(new Item("Bird 2",R.drawable.ic_image));
-        birdList.add(new Item("Bird 3",R.drawable.ic_image));
-        birdList.add(new Item("Bird 4",R.drawable.ic_image));
 
-        MyAdapter myAdapter=new MyAdapter(getActivity(),R.layout.grid_item,birdList);
-        simpleList.setAdapter(myAdapter);
-
-        simpleList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(getActivity(),BaiguullagaActivity.class));
-            }
-        });
 
         for(String name : url_maps.keySet()){
 
@@ -103,8 +92,46 @@ public class HomeFragment extends Fragment {
         mDemoSlider.setCustomAnimation(new DescriptionAnimation());
         mDemoSlider.setDuration(4000);
 
+        simpleList.setNumColumns(2);
+        simpleList.setVisibility(View.VISIBLE);
+
+        getProject();
+
         return view;
 
+    }
+
+    private void getProject() {
+        String uri = AppConfig.ProjectService;
+
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(uri)
+                .build();
+
+        Log.e("" , request.toString());
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("", "Алдаа:" + e.getMessage());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String res = response.body().string();
+                mHandler.post(() -> {
+                    try {
+                        JSONObject prod = new JSONObject(String.valueOf("{project=" + res+"}"));
+                        JSONArray prodItems = prod.getJSONArray("project");
+                        Log.e("", prodItems + "");
+                        simpleList.setAdapter(new HomeAdapter(getActivity(), prodItems));
+                    } catch (JSONException ex){
+                        ex.printStackTrace();
+                    }
+                });
+            }
+        });
     }
 
 }

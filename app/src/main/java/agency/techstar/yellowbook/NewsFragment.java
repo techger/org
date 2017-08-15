@@ -1,8 +1,5 @@
 package agency.techstar.yellowbook;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.os.Handler;
@@ -11,18 +8,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.io.IOException;
-import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.IOException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -57,7 +51,6 @@ public class NewsFragment extends Fragment {
         prgLoading = (ProgressBar) rootView.findViewById(R.id.newsLoading);
         homeItemList = (GridView) rootView.findViewById(R.id.newsItemList);
         txtAlert = (TextView) rootView.findViewById(R.id.newsTxtAlert);
-
 
         mHandler = new Handler(Looper.getMainLooper());
 
@@ -97,7 +90,7 @@ public class NewsFragment extends Fragment {
                         JSONArray prodItems = prod.getJSONArray("org");
                         Log.e(TAG, prodItems + "");
                         prgLoading.setVisibility(View.GONE);
-                        homeItemList.setAdapter(new ProjectAdapter(getActivity(), prodItems));
+                        homeItemList.setAdapter(new NewsAdapter(getActivity(), prodItems));
                     } catch (JSONException ex){
                         ex.printStackTrace();
                     }

@@ -20,7 +20,7 @@ import org.json.JSONException;
  * Created by Dolly on 8/1/2017.
  */
 
-public class ProjectAdapter extends BaseAdapter {
+public class NewsAdapter extends BaseAdapter {
 
     final Context context;
     final JSONArray organizations;
@@ -28,7 +28,7 @@ public class ProjectAdapter extends BaseAdapter {
 
     private LayoutInflater inflater = null;
 
-    public ProjectAdapter(Context context, JSONArray organizations) {
+    public NewsAdapter(Context context, JSONArray organizations) {
         this.context = context;
         this.organizations = organizations;
         imageLoader = new ImageLoader(context);
@@ -64,6 +64,7 @@ public class ProjectAdapter extends BaseAdapter {
 
         TextView pName = (TextView) vi.findViewById(R.id.textOrg);
         AppCompatImageView pImage  = (AppCompatImageView) vi.findViewById(R.id.imgOrg);
+
 
         try {
             pName.setText(organizations.getJSONObject(position).getString("org_name"));
