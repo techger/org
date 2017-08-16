@@ -68,14 +68,14 @@ public class NewsAdapter extends BaseAdapter {
 
         try {
             pName.setText(organizations.getJSONObject(position).getString("org_name"));
-            imageLoader.DisplayImage(AppConfig.AdminPageURL+"/upload/images/"+organizations.getJSONObject(position).getString("org_image"), pImage);
+            imageLoader.DisplayImage(AppConfig.AdminPageURL+"/"+organizations.getJSONObject(position).getString("org_image"), pImage);
             vi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent iDetail = new Intent(context, BaiguullagaActivity.class);
+                    Intent iDetail = new Intent(context, OrganizationActivity.class);
                     try {
                         Toast.makeText(context, organizations.getJSONObject(position).getString("org_name"), Toast.LENGTH_SHORT).show();
-                        iDetail.putExtra("organization_id", organizations.getJSONObject(position).getString("org_id"));
+                        iDetail.putExtra("org_id", organizations.getJSONObject(position).getString("org_id"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

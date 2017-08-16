@@ -42,7 +42,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
-public class BaiguullagaActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class OrganizationActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     ImageView imgPreview;
     TextView txtText, txtSubText;
@@ -50,14 +50,14 @@ public class BaiguullagaActivity extends AppCompatActivity implements OnMapReady
     TextView txtAlert;
     CoordinatorLayout coordinatorLayout;
     Handler mHandler;
-    String Project_image, Project_name, Project_about, Project_phone, Project_email, Project_Web;
+    String Organization_image, Organization_name, Organization_about, Organization_phone, Organization_email, Organization_Web, Organization_Fb, Organization_Location;
     MapView mapView;
     private GoogleMap googleMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_baiguullaga);
+        setContentView(R.layout.activity_organization);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -72,21 +72,22 @@ public class BaiguullagaActivity extends AppCompatActivity implements OnMapReady
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_content);
         mHandler = new Handler(Looper.getMainLooper());
         FloatingActionButton webbutton = (FloatingActionButton) findViewById(R.id.btnWeb);
-
+        Intent iGet = getIntent();
+        String org_id = iGet.getStringExtra("org_id");
+        getOrganization();
         webbutton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(BaiguullagaActivity.this, WebActivity.class));
+                Intent web = new Intent( OrganizationActivity.this, WebActivity.class);
+                startActivity(new Intent( OrganizationActivity.this, WebActivity.class));
             }
         });
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.mapFragment);
 
         mapFragment.getMapAsync(this);
-        Intent iGet = getIntent();
-        String project_id = iGet.getStringExtra("project_id");
 
-        getProduct();
     }
 
     @Override
@@ -100,14 +101,14 @@ public class BaiguullagaActivity extends AppCompatActivity implements OnMapReady
         }
     }
 
-    public void getProduct() {
+    public void getOrganization() {
 
         Intent iGet = getIntent();
 
-        String uri = AppConfig.ProjectService;
+        String uri = AppConfig.OrgService;
 
         RequestBody formBody = new FormBody.Builder()
-                .add("project_id", iGet.getStringExtra("project_id"))
+                .add("org_id", iGet.getStringExtra("org_id"))
                 .build();
 
         Log.e("Дуудсан холбоос: ", uri);
@@ -130,18 +131,21 @@ public class BaiguullagaActivity extends AppCompatActivity implements OnMapReady
                 final String res = response.body().string();
 
                 Log.e("Res: ", "" + res);
-
                 mHandler.post(() -> {
                     try {
                         JSONArray data = new JSONArray(res);
                         for (int i = 0; i < data.length(); i++) {
-                            Project_image = data.getJSONObject(i).getString("project_image");
-                            Project_name = data.getJSONObject(i).getString("project_name");
-                            Project_about = data.getJSONObject(i).getString("project_about");
-
+                            Organization_image = data.getJSONObject(i).getString("org_image");
+                            Organization_name = data.getJSONObject(i).getString("org_name");
+                            Organization_about = data.getJSONObject(i).getString("org_about");
+                            Organization_phone = data.getJSONObject(i).getString("org_phone");
+                            Organization_email = data.getJSONObject(i).getString("org_email");
+                            Organization_Web = data.getJSONObject(i).getString("org_web");
+                            Organization_Fb = data.getJSONObject(i).getString("org_fb");
+                            Organization_Location = data.getJSONObject(i).getString("org_location");
                         }
                         coordinatorLayout.setVisibility(View.VISIBLE);
-                        Picasso.with(getApplicationContext()).load(AppConfig.AdminPageURL + Project_image).placeholder(R.drawable.ic_image).into(imgPreview, new com.squareup.picasso.Callback() {
+                        Picasso.with(getApplicationContext()).load(AppConfig.AdminPageURL + "/"+ Organization_image).placeholder(R.drawable.ic_image).into(imgPreview, new com.squareup.picasso.Callback() {
                             @Override
                             public void onSuccess() {
                                 Bitmap bitmap = ((BitmapDrawable) imgPreview.getDrawable()).getBitmap();
@@ -158,8 +162,8 @@ public class BaiguullagaActivity extends AppCompatActivity implements OnMapReady
                             }
                         });
 
-                        txtText.setText(Project_name);
-                        txtDescription.loadDataWithBaseURL("", Project_about, "text/html", "UTF-8", "");
+                        txtText.setText(Organization_name);
+                        txtDescription.loadDataWithBaseURL("", Organization_about, "text/html", "UTF-8", "");
                         txtDescription.setBackgroundColor(Color.parseColor("#ffffff"));
                         txtDescription.getSettings().setDefaultTextEncodingName("UTF-8");
 

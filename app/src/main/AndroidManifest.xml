@@ -61,7 +61,8 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/google_map_api" />
 
-        <activity android:name=".WebActivity"></activity>
+        <activity android:name=".WebActivity" />
+        <activity android:name=".OrganizationActivity"></activity>
     </application>
 
 </manifest>

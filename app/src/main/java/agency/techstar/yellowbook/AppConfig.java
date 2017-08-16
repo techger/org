@@ -5,9 +5,9 @@ package agency.techstar.yellowbook;
  */
 
 public class AppConfig {
-    public static String AdminPageURL = "https://www.boxshop.mn/hack";
-    public static String ProjectService = "http://www.boxshop.mn/hack/app/Project.php";
-    public static String UserService= "http://www.boxshop.mn/hack/app/User.php";
-    public static String OrgService= "http://www.boxshop.mn/hack/app/Organization.php";
-    public static String CategoryService= "http://www.boxshop.mn/hack/app/Category.php";
+    public static String AdminPageURL = "https://appbase-api-tortuvshin.c9users.io";
+    public static String ProjectService = AdminPageURL+"/app/Project.php";
+    public static String UserService= AdminPageURL+"/app/User.php";
+    public static String OrgService= AdminPageURL+"/app/Organization.php";
+    public static String CategoryService= AdminPageURL+"/app/Category.php";
 }
