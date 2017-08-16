@@ -94,12 +94,9 @@
                         android:textColor="@color/textColorPrimary"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
-                        android:textSize="16sp"
-                        android:text="
-I tried some tweaks with your code to get it working and in the process I have gained some understanding about the working of anchors.
-First thing to notice is that the CoordinatorLayout aligns its child views based on the view's borders. So adding margin between elements wouldn't help at all in motion. It will look fine in the layout, but give up in motion.
-So adding a dummy view helps in anchoring properly without issues. Also, you need to appropriately set the layout_gravities."/>
+                        android:textSize="16sp">
 
+                    </TextView>
                     <WebView
                         android:id="@+id/txtDescription"
                         android:layout_margin="10dp"

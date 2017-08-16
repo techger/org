@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -71,7 +72,12 @@ public class OrganizationActivity extends AppCompatActivity implements OnMapRead
         txtDescription = (WebView) findViewById(R.id.txtDescription);
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_content);
         mHandler = new Handler(Looper.getMainLooper());
+
         FloatingActionButton webbutton = (FloatingActionButton) findViewById(R.id.btnWeb);
+        FloatingActionButton callbutton = (FloatingActionButton) findViewById(R.id.btnCall);
+        FloatingActionButton emailbutton = (FloatingActionButton) findViewById(R.id.btnEmail);
+        FloatingActionButton fbbutton = (FloatingActionButton) findViewById(R.id.btnAdd);
+
         Intent iGet = getIntent();
         String org_id = iGet.getStringExtra("org_id");
         getOrganization();
@@ -79,10 +85,52 @@ public class OrganizationActivity extends AppCompatActivity implements OnMapRead
 
             @Override
             public void onClick(View v) {
-                Intent web = new Intent( OrganizationActivity.this, WebActivity.class);
-                startActivity(new Intent( OrganizationActivity.this, WebActivity.class));
+                Intent web = new Intent(OrganizationActivity.this, WebActivity.class);
+                web.putExtra("org_web", Organization_Web);
+                startActivity(web);
             }
         });
+
+        callbutton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + Organization_phone));
+                if (ActivityCompat.checkSelfPermission(OrganizationActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                startActivity(intent);
+            }
+        });
+        emailbutton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                        "mailto",Organization_email, null));
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Гарчиг");
+                emailIntent.putExtra(Intent.EXTRA_TEXT, "Техт");
+                startActivity(Intent.createChooser(emailIntent, "Таны и-мэйл илгээгдэж байна..."));
+            }
+        });
+
+        fbbutton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent web = new Intent(OrganizationActivity.this, WebActivity.class);
+                web.putExtra("org_web", Organization_Fb);
+                startActivity(web);
+            }
+        });
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.mapFragment);
 
