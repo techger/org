@@ -58,7 +58,7 @@ public class ProjectAdapter extends BaseAdapter{
     public View getView(final int position, View convertView, ViewGroup parent) {
         View vi = convertView;
         if(vi == null)
-            vi = inflater.inflate(R.layout.grid_item, null);
+            vi = inflater.inflate(R.layout.project_item, null);
 
         TextView pName = (TextView) vi.findViewById(R.id.textViewG);
         AppCompatImageView pImage  = (AppCompatImageView) vi.findViewById(R.id.imageViewG);
