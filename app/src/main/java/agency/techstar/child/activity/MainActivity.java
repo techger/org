@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.shake) {
             // Handle the camera action
         } else if (id == R.id.about) {
+            startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
 
         } else if (id == R.id.like) {
             final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
@@ -118,7 +119,12 @@ public class MainActivity extends AppCompatActivity
             }
 
         } else if (id == R.id.share) {
-            startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT,
+                    "Hey check out my app at: https://play.google.com/store/apps/details?id=com.google.android.apps.plus");
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
 
         }
 
@@ -157,3 +163,4 @@ public class MainActivity extends AppCompatActivity
 
     };
 }
+
