@@ -19,5 +19,7 @@
     <string name="title_activity_about_us">AboutUsActivity</string>
     <string name="google_map_api">AIzaSyDLMoacIBT8x1NjcHKFHO3Oe59ib2eAIz8</string>
 
+    <string name="copyright">MIT License Copyright(c) 2017 </string>
+    <string name="aboutdisc">Бидний тухай</string>
 
 </resources>

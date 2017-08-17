@@ -21,23 +21,18 @@ public class AboutUsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         simulateDayNight(/* DAY */ 0);
-        Element adsElement = new Element();
-        adsElement.setTitle("Advertise with us");
-
+        final String appPackageName = getPackageName();
         View aboutPage = new AboutPage(this)
                 .isRTL(false)
                 .setImage(R.drawable.ic_image)
-                .addItem(new Element().setTitle("Version 6.2"))
-                .addItem(adsElement)
-                .addGroup("Connect with us")
-                .addEmail("elmehdi.sakout@gmail.com")
-                .addWebsite("http://medyo.github.io/")
-                .addFacebook("the.medy")
-                .addTwitter("medyo80")
-                .addYoutube("UCdPQtdWIsg7_pi4mrRu46vA")
-                .addPlayStore("com.ideashower.readitlater.pro")
-                .addInstagram("medyo80")
-                .addGitHub("medyo")
+                .setDescription("Энэхүү Аппликэйшн нь хүүхдийн төлөө үйл ажиллагаа" +
+                        " явуулдаг төрийн болон төрийн бус байгууллагуудтай нэг дороос холбогдоход тусална.")
+                .addGroup("Холбоо барих")
+                .addEmail("doljko927@gmail.com","И-мэйл хаяг")
+                .addWebsite("https://github.com/doljko/YellowBook","Веб хуудас")
+                .addFacebook("todaybots","Фэйсбүүк холбоос")
+                .addPlayStore(appPackageName,"Татаж авах")
+                .addGitHub("doljko","Нээлттэй эх")
                 .addItem(getCopyRightsElement())
                 .create();
 
@@ -47,7 +42,7 @@ public class AboutUsActivity extends AppCompatActivity {
 
     Element getCopyRightsElement() {
         Element copyRightsElement = new Element();
-        final String copyrights = String.format(getString(R.string.title_activity_baiguullaga), Calendar.getInstance().get(Calendar.YEAR));
+        final String copyrights = String.format(getString(R.string.copyright), Calendar.getInstance().get(Calendar.YEAR));
         copyRightsElement.setTitle(copyrights);
         copyRightsElement.setIconDrawable(R.drawable.ic_image);
         copyRightsElement.setIconTint(mehdi.sakout.aboutpage.R.color.about_item_icon_color);
