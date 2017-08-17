@@ -50,7 +50,7 @@ public class OrgFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_news, container, false);
+        rootView = inflater.inflate(R.layout.fragment_organization, container, false);
         prgLoading = (ProgressBar) rootView.findViewById(R.id.newsLoading);
         homeItemList = (GridView) rootView.findViewById(R.id.newsItemList);
         txtAlert = (TextView) rootView.findViewById(R.id.newsTxtAlert);

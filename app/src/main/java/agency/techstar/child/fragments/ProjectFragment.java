@@ -54,7 +54,7 @@ public class ProjectFragment extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_home, container, false);
+        view = inflater.inflate(R.layout.fragment_project, container, false);
         // Inflate the layout for this fragment
         mDemoSlider = (SliderLayout) view.findViewById(R.id.slider);
         simpleList = (GridView) view.findViewById(R.id.simpleGridView);
