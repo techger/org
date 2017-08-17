@@ -1,4 +1,4 @@
-package agency.techstar.yellowbook;
+package agency.techstar.yellowbook.utils;
 
 import android.graphics.Bitmap;
 import android.util.Log;

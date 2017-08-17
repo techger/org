@@ -1,12 +1,10 @@
-package agency.techstar.yellowbook;
+package agency.techstar.yellowbook.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
+
+import agency.techstar.yellowbook.R;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -22,7 +20,7 @@ public class SplashActivity extends AppCompatActivity {
                     }catch(InterruptedException e){
                         e.printStackTrace();
                     }finally{
-                        Intent intent = new Intent(SplashActivity.this,NavActivity.class);
+                        Intent intent = new Intent(SplashActivity.this,MainActivity.class);
                         startActivity(intent);
                         finish();
                     }

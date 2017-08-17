@@ -1,4 +1,4 @@
-package agency.techstar.yellowbook;
+package agency.techstar.yellowbook.utils;
 
 import android.app.Activity;
 import android.content.Context;

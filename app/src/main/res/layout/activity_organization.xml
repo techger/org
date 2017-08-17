@@ -127,7 +127,7 @@
             app:layout_anchor="@id/appbar"
             app:layout_anchorGravity="bottom|right|end"
             android:clickable="true"
-            app:srcCompat="@drawable/ic_share"
+            app:srcCompat="@drawable/ic_fb"
             app:borderWidth="0dp"
             app:fabSize="normal"
             />

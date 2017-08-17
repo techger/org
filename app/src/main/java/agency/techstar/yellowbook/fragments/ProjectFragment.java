@@ -1,7 +1,6 @@
-package agency.techstar.yellowbook;
+package agency.techstar.yellowbook.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.os.Handler;
@@ -10,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
@@ -23,24 +21,26 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
+import agency.techstar.yellowbook.AppConfig;
+import agency.techstar.yellowbook.adapter.ProjectAdapter;
+import agency.techstar.yellowbook.R;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class HomeFragment extends Fragment {
+public class ProjectFragment extends Fragment {
 
     private SliderLayout mDemoSlider;
     Context context;
     View view;
     private Handler mHandler;
 
-    public static HomeFragment newInstance() {
-        HomeFragment fragment = new HomeFragment();
+    public static ProjectFragment newInstance() {
+        ProjectFragment fragment = new ProjectFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -125,7 +125,7 @@ public class HomeFragment extends Fragment {
                         JSONObject prod = new JSONObject(String.valueOf("{project=" + res+"}"));
                         JSONArray prodItems = prod.getJSONArray("project");
                         Log.e("", prodItems + "");
-                        simpleList.setAdapter(new HomeAdapter(getActivity(), prodItems));
+                        simpleList.setAdapter(new ProjectAdapter(getActivity(), prodItems));
                     } catch (JSONException ex){
                         ex.printStackTrace();
                     }

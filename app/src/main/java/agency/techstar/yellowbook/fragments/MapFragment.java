@@ -1,7 +1,5 @@
-package agency.techstar.yellowbook;
+package agency.techstar.yellowbook.fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,12 +15,14 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class ProjectFragment extends Fragment {
+import agency.techstar.yellowbook.R;
+
+public class MapFragment extends Fragment {
     MapView mMapView;
     private GoogleMap googleMap;
 
-    public static ProjectFragment newInstance() {
-        ProjectFragment fragment = new ProjectFragment();
+    public static MapFragment newInstance() {
+        MapFragment fragment = new MapFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
 

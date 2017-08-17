@@ -1,4 +1,4 @@
-package agency.techstar.yellowbook;
+package agency.techstar.yellowbook.fragments;
 
 import android.os.Bundle;
 import android.app.Fragment;
@@ -18,14 +18,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import agency.techstar.yellowbook.AppConfig;
+import agency.techstar.yellowbook.adapter.OrgAdapter;
+import agency.techstar.yellowbook.R;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-public class NewsFragment extends Fragment {
+public class OrgFragment extends Fragment {
 
-    private static final String TAG = NewsFragment.class.getSimpleName();
+    private static final String TAG = OrgFragment.class.getSimpleName();
     private static View rootView;
 
     private GridView homeItemList;
@@ -33,8 +36,8 @@ public class NewsFragment extends Fragment {
     private TextView txtAlert;
     private Handler mHandler;
 
-    public static NewsFragment newInstance() {
-        NewsFragment fragment = new NewsFragment();
+    public static OrgFragment newInstance() {
+        OrgFragment fragment = new OrgFragment();
         Bundle args = new Bundle();
         return fragment;
     }
@@ -90,7 +93,7 @@ public class NewsFragment extends Fragment {
                         JSONArray prodItems = prod.getJSONArray("org");
                         Log.e(TAG, prodItems + "");
                         prgLoading.setVisibility(View.GONE);
-                        homeItemList.setAdapter(new NewsAdapter(getActivity(), prodItems));
+                        homeItemList.setAdapter(new OrgAdapter(getActivity(), prodItems));
                     } catch (JSONException ex){
                         ex.printStackTrace();
                     }

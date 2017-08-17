@@ -1,4 +1,4 @@
-package agency.techstar.yellowbook;
+package agency.techstar.yellowbook.activity;
 
 
 import android.content.res.Configuration;
@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
+import agency.techstar.yellowbook.R;
 import mehdi.sakout.aboutpage.AboutPage;
 import mehdi.sakout.aboutpage.Element;
 

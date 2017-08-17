@@ -1,18 +1,15 @@
-package agency.techstar.yellowbook;
+package agency.techstar.yellowbook.activity;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.SearchView;
-import android.view.MenuInflater;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -21,9 +18,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
-public class NavActivity extends AppCompatActivity
+import agency.techstar.yellowbook.R;
+import agency.techstar.yellowbook.fragments.MapFragment;
+import agency.techstar.yellowbook.fragments.OrgFragment;
+import agency.techstar.yellowbook.fragments.ProjectFragment;
+
+public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private SearchView searchView;
@@ -51,7 +52,7 @@ public class NavActivity extends AppCompatActivity
 
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.content, HomeFragment.newInstance()); // newInstance() is a static factory method.
+        transaction.replace(R.id.content, ProjectFragment.newInstance()); // newInstance() is a static factory method.
         transaction.commit();
     }
 
@@ -109,9 +110,15 @@ public class NavActivity extends AppCompatActivity
         } else if (id == R.id.about) {
 
         } else if (id == R.id.like) {
+            final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+            } catch (android.content.ActivityNotFoundException anfe) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+            }
 
         } else if (id == R.id.share) {
-            startActivity(new Intent(NavActivity.this, AboutUsActivity.class));
+            startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
 
         }
 
@@ -129,19 +136,19 @@ public class NavActivity extends AppCompatActivity
                 case R.id.navigation_home:
                     FragmentManager manager = getFragmentManager();
                     FragmentTransaction transaction = manager.beginTransaction();
-                    transaction.replace(R.id.content, HomeFragment.newInstance()); // newInstance() is a static factory method.
+                    transaction.replace(R.id.content, ProjectFragment.newInstance()); // newInstance() is a static factory method.
                     transaction.commit();
                     return true;
                 case R.id.navigation_dashboard:
                     FragmentManager newsManager = getFragmentManager();
                     FragmentTransaction transaction1 = newsManager.beginTransaction();
-                    transaction1.replace(R.id.content, NewsFragment.newInstance()); // newInstance() is a static factory method.
+                    transaction1.replace(R.id.content, OrgFragment.newInstance()); // newInstance() is a static factory method.
                     transaction1.commit();
                     return true;
                 case R.id.navigation_notifications:
                     FragmentManager projectManager = getFragmentManager();
                     FragmentTransaction transaction2 = projectManager.beginTransaction();
-                    transaction2.replace(R.id.content, ProjectFragment.newInstance()); // newInstance() is a static factory method.
+                    transaction2.replace(R.id.content, MapFragment.newInstance()); // newInstance() is a static factory method.
                     transaction2.commit();
                     return true;
             }

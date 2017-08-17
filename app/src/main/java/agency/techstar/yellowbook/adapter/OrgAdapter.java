@@ -1,4 +1,5 @@
-package agency.techstar.yellowbook;
+package agency.techstar.yellowbook.adapter;
+
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.AppCompatImageView;
@@ -6,28 +7,33 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.util.ArrayList;
+import agency.techstar.yellowbook.AppConfig;
+import agency.techstar.yellowbook.R;
+import agency.techstar.yellowbook.activity.OrgDetailActivity;
+import agency.techstar.yellowbook.utils.ImageLoader;
 
-public class HomeAdapter extends BaseAdapter{
+/**
+ * Created by Dolly on 8/1/2017.
+ */
+
+public class OrgAdapter extends BaseAdapter {
 
     final Context context;
-    final JSONArray projects;
+    final JSONArray organizations;
     public ImageLoader imageLoader;
 
+    private LayoutInflater inflater = null;
 
-    LayoutInflater inflater = null;
-    public HomeAdapter( Context context, JSONArray projects) {
+    public OrgAdapter(Context context, JSONArray organizations) {
         this.context = context;
-        this.projects = projects;
+        this.organizations = organizations;
         imageLoader = new ImageLoader(context);
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -35,13 +41,13 @@ public class HomeAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
-        return projects.length();
+        return organizations.length();
     }
 
     @Override
     public Object getItem(int position) {
         try {
-            return projects.getJSONObject(position);
+            return organizations.getJSONObject(position);
         } catch (JSONException e){
             e.printStackTrace();
         }
@@ -57,22 +63,22 @@ public class HomeAdapter extends BaseAdapter{
     public View getView(final int position, View convertView, ViewGroup parent) {
         View vi = convertView;
         if(vi == null)
-            vi = inflater.inflate(R.layout.grid_item, null);
+            vi = inflater.inflate(R.layout.organization_item, null);
 
-        TextView pName = (TextView) vi.findViewById(R.id.textViewG);
-        AppCompatImageView pImage  = (AppCompatImageView) vi.findViewById(R.id.imageViewG);
+        TextView pName = (TextView) vi.findViewById(R.id.textOrg);
+        AppCompatImageView pImage  = (AppCompatImageView) vi.findViewById(R.id.imgOrg);
 
 
         try {
-            pName.setText(projects.getJSONObject(position).getString("project_name"));
-            imageLoader.DisplayImage(AppConfig.AdminPageURL+"/upload/images/"+projects.getJSONObject(position).getString("project_image"), pImage);
+            pName.setText(organizations.getJSONObject(position).getString("org_name"));
+            imageLoader.DisplayImage(AppConfig.AdminPageURL+"/"+organizations.getJSONObject(position).getString("org_image"), pImage);
             vi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent iDetail = new Intent(context, BaiguullagaActivity.class);
+                    Intent iDetail = new Intent(context, OrgDetailActivity.class);
                     try {
-                        Toast.makeText(context, projects.getJSONObject(position).getString("project_name"), Toast.LENGTH_SHORT).show();
-                        iDetail.putExtra("project_id", projects.getJSONObject(position).getString("project_id"));
+                        Toast.makeText(context, organizations.getJSONObject(position).getString("org_name"), Toast.LENGTH_SHORT).show();
+                        iDetail.putExtra("org_id", organizations.getJSONObject(position).getString("org_id"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -85,5 +91,4 @@ public class HomeAdapter extends BaseAdapter{
         }
         return vi;
     }
-
 }

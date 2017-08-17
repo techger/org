@@ -1,36 +1,34 @@
-package agency.techstar.yellowbook;
-
+package agency.techstar.yellowbook.adapter;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
-/**
- * Created by Dolly on 8/1/2017.
- */
+import agency.techstar.yellowbook.AppConfig;
+import agency.techstar.yellowbook.R;
+import agency.techstar.yellowbook.activity.ProjectDetaikActivity;
+import agency.techstar.yellowbook.utils.ImageLoader;
 
-public class NewsAdapter extends BaseAdapter {
+public class ProjectAdapter extends BaseAdapter{
 
     final Context context;
-    final JSONArray organizations;
+    final JSONArray projects;
     public ImageLoader imageLoader;
 
-    private LayoutInflater inflater = null;
 
-    public NewsAdapter(Context context, JSONArray organizations) {
+    LayoutInflater inflater = null;
+    public ProjectAdapter(Context context, JSONArray projects) {
         this.context = context;
-        this.organizations = organizations;
+        this.projects = projects;
         imageLoader = new ImageLoader(context);
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -38,13 +36,13 @@ public class NewsAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return organizations.length();
+        return projects.length();
     }
 
     @Override
     public Object getItem(int position) {
         try {
-            return organizations.getJSONObject(position);
+            return projects.getJSONObject(position);
         } catch (JSONException e){
             e.printStackTrace();
         }
@@ -60,22 +58,22 @@ public class NewsAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         View vi = convertView;
         if(vi == null)
-            vi = inflater.inflate(R.layout.organization_item, null);
+            vi = inflater.inflate(R.layout.grid_item, null);
 
-        TextView pName = (TextView) vi.findViewById(R.id.textOrg);
-        AppCompatImageView pImage  = (AppCompatImageView) vi.findViewById(R.id.imgOrg);
+        TextView pName = (TextView) vi.findViewById(R.id.textViewG);
+        AppCompatImageView pImage  = (AppCompatImageView) vi.findViewById(R.id.imageViewG);
 
 
         try {
-            pName.setText(organizations.getJSONObject(position).getString("org_name"));
-            imageLoader.DisplayImage(AppConfig.AdminPageURL+"/"+organizations.getJSONObject(position).getString("org_image"), pImage);
+            pName.setText(projects.getJSONObject(position).getString("project_name"));
+            imageLoader.DisplayImage(AppConfig.AdminPageURL+"/upload/images/"+projects.getJSONObject(position).getString("project_image"), pImage);
             vi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent iDetail = new Intent(context, OrganizationActivity.class);
+                    Intent iDetail = new Intent(context, ProjectDetaikActivity.class);
                     try {
-                        Toast.makeText(context, organizations.getJSONObject(position).getString("org_name"), Toast.LENGTH_SHORT).show();
-                        iDetail.putExtra("org_id", organizations.getJSONObject(position).getString("org_id"));
+                        Toast.makeText(context, projects.getJSONObject(position).getString("project_name"), Toast.LENGTH_SHORT).show();
+                        iDetail.putExtra("project_id", projects.getJSONObject(position).getString("project_id"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -88,4 +86,5 @@ public class NewsAdapter extends BaseAdapter {
         }
         return vi;
     }
+
 }
