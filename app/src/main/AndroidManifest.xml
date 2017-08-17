@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="agency.techstar.yellowbook">
+    package="agency.techstar.child">
 
     <!-- if you want to load images from a file OR from the internet -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -24,8 +24,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.MainActivity"
-            android:label="@string/title_activity_nav"
+            android:name="agency.techstar.child.activity.MainActivity"
+            android:label="@string/title_activity_main"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
@@ -36,7 +36,7 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity
-            android:name=".activity.SplashActivity"
+            android:name="agency.techstar.child.activity.SplashActivity"
             android:label="@string/title_activity_splash"
             android:theme="@style/AppThemeFull">
             <intent-filter>
@@ -46,11 +46,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.ProjectDetaikActivity"
+            android:name="agency.techstar.child.activity.ProjectDetaikActivity"
             android:label="@string/title_activity_baiguullaga"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activity.AboutUsActivity"
+            android:name="agency.techstar.child.activity.AboutUsActivity"
             android:label="@string/title_activity_about_us"
             android:theme="@style/AppTheme" />
 
@@ -61,8 +61,8 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/google_map_api" />
 
-        <activity android:name=".activity.WebActivity" />
-        <activity android:name=".activity.OrgDetailActivity"></activity>
+        <activity android:name="agency.techstar.child.activity.WebActivity" />
+        <activity android:name="agency.techstar.child.activity.OrgDetailActivity"></activity>
     </application>
 
 </manifest>

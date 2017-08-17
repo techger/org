@@ -1,5 +1,4 @@
-package agency.techstar.yellowbook.adapter;
-
+package agency.techstar.child.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.AppCompatImageView;
@@ -14,26 +13,22 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import agency.techstar.yellowbook.AppConfig;
-import agency.techstar.yellowbook.R;
-import agency.techstar.yellowbook.activity.OrgDetailActivity;
-import agency.techstar.yellowbook.utils.ImageLoader;
+import agency.techstar.child.AppConfig;
+import agency.techstar.child.R;
+import agency.techstar.child.activity.ProjectDetaikActivity;
+import agency.techstar.child.utils.ImageLoader;
 
-/**
- * Created by Dolly on 8/1/2017.
- */
-
-public class OrgAdapter extends BaseAdapter {
+public class ProjectAdapter extends BaseAdapter{
 
     final Context context;
-    final JSONArray organizations;
+    final JSONArray projects;
     public ImageLoader imageLoader;
 
-    private LayoutInflater inflater = null;
 
-    public OrgAdapter(Context context, JSONArray organizations) {
+    LayoutInflater inflater = null;
+    public ProjectAdapter(Context context, JSONArray projects) {
         this.context = context;
-        this.organizations = organizations;
+        this.projects = projects;
         imageLoader = new ImageLoader(context);
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -41,13 +36,13 @@ public class OrgAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return organizations.length();
+        return projects.length();
     }
 
     @Override
     public Object getItem(int position) {
         try {
-            return organizations.getJSONObject(position);
+            return projects.getJSONObject(position);
         } catch (JSONException e){
             e.printStackTrace();
         }
@@ -63,22 +58,22 @@ public class OrgAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         View vi = convertView;
         if(vi == null)
-            vi = inflater.inflate(R.layout.organization_item, null);
+            vi = inflater.inflate(R.layout.grid_item, null);
 
-        TextView pName = (TextView) vi.findViewById(R.id.textOrg);
-        AppCompatImageView pImage  = (AppCompatImageView) vi.findViewById(R.id.imgOrg);
+        TextView pName = (TextView) vi.findViewById(R.id.textViewG);
+        AppCompatImageView pImage  = (AppCompatImageView) vi.findViewById(R.id.imageViewG);
 
 
         try {
-            pName.setText(organizations.getJSONObject(position).getString("org_name"));
-            imageLoader.DisplayImage(AppConfig.AdminPageURL+"/"+organizations.getJSONObject(position).getString("org_image"), pImage);
+            pName.setText(projects.getJSONObject(position).getString("project_name"));
+            imageLoader.DisplayImage(AppConfig.AdminPageURL+"/upload/images/"+projects.getJSONObject(position).getString("project_image"), pImage);
             vi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent iDetail = new Intent(context, OrgDetailActivity.class);
+                    Intent iDetail = new Intent(context, ProjectDetaikActivity.class);
                     try {
-                        Toast.makeText(context, organizations.getJSONObject(position).getString("org_name"), Toast.LENGTH_SHORT).show();
-                        iDetail.putExtra("org_id", organizations.getJSONObject(position).getString("org_id"));
+                        Toast.makeText(context, projects.getJSONObject(position).getString("project_name"), Toast.LENGTH_SHORT).show();
+                        iDetail.putExtra("project_id", projects.getJSONObject(position).getString("project_id"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -91,4 +86,5 @@ public class OrgAdapter extends BaseAdapter {
         }
         return vi;
     }
+
 }

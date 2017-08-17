@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="agency.techstar.yellowbook.HomeFragment">
+    tools:context="agency.techstar.child.fragments.ProjectFragment">
 
     <com.daimajia.slider.library.SliderLayout
         android:id="@+id/slider"

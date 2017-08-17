@@ -1,9 +1,4 @@
-package agency.techstar.yellowbook.utils;
-
-import android.app.Activity;
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+package agency.techstar.child.utils;
 
 import java.io.InputStream;
 import java.io.OutputStream;

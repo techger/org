@@ -1,4 +1,4 @@
-package agency.techstar.yellowbook.activity;
+package agency.techstar.child.activity;
 
 import android.Manifest;
 import android.content.Intent;
@@ -33,8 +33,8 @@ import org.json.JSONArray;
 
 import java.io.IOException;
 
-import agency.techstar.yellowbook.AppConfig;
-import agency.techstar.yellowbook.R;
+import agency.techstar.child.AppConfig;
+import agency.techstar.child.R;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;

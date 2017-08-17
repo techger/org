@@ -1,4 +1,4 @@
-package agency.techstar.yellowbook.activity;
+package agency.techstar.child.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import agency.techstar.yellowbook.R;
+import agency.techstar.child.R;
 
 public class WebActivity extends AppCompatActivity {
 

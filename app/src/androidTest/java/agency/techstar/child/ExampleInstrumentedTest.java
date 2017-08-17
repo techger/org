@@ -1,4 +1,4 @@
-package agency.techstar.yellowbook;
+package agency.techstar.child;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

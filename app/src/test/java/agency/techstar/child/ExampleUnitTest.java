@@ -1,4 +1,4 @@
-package agency.techstar.yellowbook;
+package agency.techstar.child;
 
 import org.junit.Test;
 

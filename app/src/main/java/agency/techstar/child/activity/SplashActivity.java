@@ -1,10 +1,10 @@
-package agency.techstar.yellowbook.activity;
+package agency.techstar.child.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import agency.techstar.yellowbook.R;
+import agency.techstar.child.R;
 
 public class SplashActivity extends AppCompatActivity {
 

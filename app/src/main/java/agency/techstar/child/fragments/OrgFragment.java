@@ -1,4 +1,4 @@
-package agency.techstar.yellowbook.fragments;
+package agency.techstar.child.fragments;
 
 import android.os.Bundle;
 import android.app.Fragment;
@@ -18,9 +18,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import agency.techstar.yellowbook.AppConfig;
-import agency.techstar.yellowbook.adapter.OrgAdapter;
-import agency.techstar.yellowbook.R;
+import agency.techstar.child.AppConfig;
+import agency.techstar.child.adapter.OrgAdapter;
+import agency.techstar.child.R;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;

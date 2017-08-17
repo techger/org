@@ -1,4 +1,4 @@
-package agency.techstar.yellowbook.activity;
+package agency.techstar.child.activity;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -19,10 +19,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import agency.techstar.yellowbook.R;
-import agency.techstar.yellowbook.fragments.MapFragment;
-import agency.techstar.yellowbook.fragments.OrgFragment;
-import agency.techstar.yellowbook.fragments.ProjectFragment;
+import agency.techstar.child.R;
+import agency.techstar.child.fragments.MapFragment;
+import agency.techstar.child.fragments.OrgFragment;
+import agency.techstar.child.fragments.ProjectFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
