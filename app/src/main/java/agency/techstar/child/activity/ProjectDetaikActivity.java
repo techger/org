@@ -89,10 +89,9 @@ public class ProjectDetaikActivity extends AppCompatActivity implements OnMapRea
                 .findFragmentById(R.id.mapFragment);
 
         mapFragment.getMapAsync(this);
-        Intent iGet = getIntent();
-        String project_id = iGet.getStringExtra("project_id");
 
         getProduct();
+
         webbutton.setOnClickListener(new View.OnClickListener() {
 
             @Override

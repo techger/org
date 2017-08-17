@@ -80,9 +80,9 @@ public class OrgDetailActivity extends AppCompatActivity implements OnMapReadyCa
         FloatingActionButton emailbutton = (FloatingActionButton) findViewById(R.id.btnEmail);
         FloatingActionButton fbbutton = (FloatingActionButton) findViewById(R.id.btnAdd);
 
-        Intent iGet = getIntent();
-        String org_id = iGet.getStringExtra("org_id");
+        // Байгууллагын мэдээллийг API аас унших функц
         getOrganization();
+
         webbutton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -99,13 +99,7 @@ public class OrgDetailActivity extends AppCompatActivity implements OnMapReadyCa
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + Organization_phone));
                 if (ActivityCompat.checkSelfPermission(OrgDetailActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
+
                     return;
                 }
                 startActivity(intent);
