@@ -5,6 +5,7 @@ import android.app.FragmentTransaction;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,25 +17,31 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.RelativeLayout;
+
+import java.util.Random;
 
 import agency.techstar.child.R;
 import agency.techstar.child.fragments.MapFragment;
 import agency.techstar.child.fragments.OrgFragment;
 import agency.techstar.child.fragments.ProjectFragment;
+import agency.techstar.child.utils.ShakeSensor;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, ShakeSensor.ShakeListener {
 
     private SearchView searchView;
     private MenuItem searchMenuItem;
-
+    private Toolbar toolbar;
+    private ShakeSensor shakeSensor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -54,6 +61,11 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.content, ProjectFragment.newInstance()); // newInstance() is a static factory method.
         transaction.commit();
+
+        shakeSensor = new ShakeSensor();
+        shakeSensor.setListener(this);
+        shakeSensor.init(this);
+
     }
 
     @Override
@@ -162,5 +174,26 @@ public class MainActivity extends AppCompatActivity
         }
 
     };
+
+    @Override
+    public void onShake() {
+        Log.e( "shake" ,"hiine");
+        Random random = new Random();
+        int r = random.nextInt(256);
+        int g = random.nextInt(256);
+        int b = random.nextInt(256);
+        toolbar.setBackgroundColor(Color.rgb(r,g,b));
+    }
+
+   @Override
+   protected void onResume() {
+         super.onResume();
+         shakeSensor.register();
+           }
+    @Override
+    protected void onPause() {
+         super.onPause();
+         shakeSensor.deregister();
+    }
 }
 
