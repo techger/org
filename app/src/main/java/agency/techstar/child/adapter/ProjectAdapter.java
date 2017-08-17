@@ -66,7 +66,7 @@ public class ProjectAdapter extends BaseAdapter{
 
         try {
             pName.setText(projects.getJSONObject(position).getString("project_name"));
-            imageLoader.DisplayImage(AppConfig.AdminPageURL+"/upload/images/"+projects.getJSONObject(position).getString("project_image"), pImage);
+            imageLoader.DisplayImage(AppConfig.AdminPageURL+"/"+projects.getJSONObject(position).getString("project_image"), pImage);
             vi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

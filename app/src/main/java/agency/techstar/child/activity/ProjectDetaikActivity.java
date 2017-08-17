@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -52,7 +53,7 @@ public class ProjectDetaikActivity extends AppCompatActivity implements OnMapRea
     TextView txtAlert;
     CoordinatorLayout coordinatorLayout;
     Handler mHandler;
-    String Project_image, Project_name, Project_about, Project_phone, Project_email, Project_Web;
+    String Project_image, Project_name, Project_about, Project_phone, Project_email, Project_Web, Project_fb;
     MapView mapView;
     private GoogleMap googleMap;
 
@@ -74,6 +75,9 @@ public class ProjectDetaikActivity extends AppCompatActivity implements OnMapRea
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_content);
         mHandler = new Handler(Looper.getMainLooper());
         FloatingActionButton webbutton = (FloatingActionButton) findViewById(R.id.btnWeb);
+        FloatingActionButton callbutton = (FloatingActionButton) findViewById(R.id.btnCall);
+        FloatingActionButton emailbutton = (FloatingActionButton) findViewById(R.id.btnEmail);
+        FloatingActionButton fbbutton = (FloatingActionButton) findViewById(R.id.btnAdd);
 
         webbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +93,55 @@ public class ProjectDetaikActivity extends AppCompatActivity implements OnMapRea
         String project_id = iGet.getStringExtra("project_id");
 
         getProduct();
+        webbutton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent web = new Intent(ProjectDetaikActivity.this, WebActivity.class);
+                web.putExtra("org_web", Project_Web);
+                startActivity(web);
+            }
+        });
+
+        callbutton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + Project_phone));
+                if (ActivityCompat.checkSelfPermission(ProjectDetaikActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                startActivity(intent);
+            }
+        });
+        emailbutton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                        "mailto",Project_email, null));
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Гарчиг");
+                emailIntent.putExtra(Intent.EXTRA_TEXT, "Техт");
+                startActivity(Intent.createChooser(emailIntent, "Таны и-мэйл илгээгдэж байна..."));
+            }
+        });
+
+        fbbutton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent web = new Intent(ProjectDetaikActivity.this, WebActivity.class);
+                web.putExtra("org_web", Project_fb);
+                startActivity(web);
+            }
+        });
     }
 
     @Override
@@ -140,10 +193,14 @@ public class ProjectDetaikActivity extends AppCompatActivity implements OnMapRea
                             Project_image = data.getJSONObject(i).getString("project_image");
                             Project_name = data.getJSONObject(i).getString("project_name");
                             Project_about = data.getJSONObject(i).getString("project_about");
-
+                            Project_phone = data.getJSONObject(i).getString("project_phone");
+                            Project_email = data.getJSONObject(i).getString("project_email");
+                            Project_Web = data.getJSONObject(i).getString("project_web");
+                            Project_fb = data.getJSONObject(i).getString("project_fb");
                         }
+
                         coordinatorLayout.setVisibility(View.VISIBLE);
-                        Picasso.with(getApplicationContext()).load(AppConfig.AdminPageURL + Project_image).placeholder(R.drawable.ic_image).into(imgPreview, new com.squareup.picasso.Callback() {
+                        Picasso.with(getApplicationContext()).load(AppConfig.AdminPageURL + "/" +Project_image).placeholder(R.drawable.ic_image).into(imgPreview, new com.squareup.picasso.Callback() {
                             @Override
                             public void onSuccess() {
                                 Bitmap bitmap = ((BitmapDrawable) imgPreview.getDrawable()).getBitmap();

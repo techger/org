@@ -37,23 +37,27 @@ public class MainActivity extends AppCompatActivity
     private MenuItem searchMenuItem;
     private Toolbar toolbar;
     private ShakeSensor shakeSensor;
+    private DrawerLayout drawer;
+    private NavigationView navigationView;
+    private BottomNavigationView navigation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 
@@ -104,7 +108,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_search) {
             return true;
         }
 
@@ -183,6 +187,9 @@ public class MainActivity extends AppCompatActivity
         int g = random.nextInt(256);
         int b = random.nextInt(256);
         toolbar.setBackgroundColor(Color.rgb(r,g,b));
+        drawer.setBackgroundColor(Color.rgb(r,g,b));
+        navigation.setBackgroundColor(Color.rgb(r,g,b));
+        navigationView.setBackgroundColor(Color.rgb(r,g,b));
     }
 
    @Override

@@ -4,7 +4,7 @@
         <item
             android:id="@+id/shake"
             android:icon="@drawable/ic_shake"
-            android:title="Намайг сэгсэр" />
+            android:title="Theme солих" />
         <item
             android:id="@+id/about"
             android:icon="@drawable/ic_about"
@@ -14,9 +14,9 @@
             android:icon="@drawable/ic_like"
             android:title="Үнэлгээ өгөх" />
 
-            <item
-                android:id="@+id/share"
-                android:icon="@drawable/ic_share"
-                android:title="Хуваалцах" />
+        <item
+            android:id="@+id/share"
+            android:icon="@drawable/ic_share"
+            android:title="Хуваалцах" />
 
 </menu>
