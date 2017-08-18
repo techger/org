@@ -80,6 +80,8 @@ public class OrgDetailActivity extends AppCompatActivity implements OnMapReadyCa
         FloatingActionButton emailbutton = (FloatingActionButton) findViewById(R.id.btnEmail);
         FloatingActionButton fbbutton = (FloatingActionButton) findViewById(R.id.btnAdd);
 
+        Intent iGet = getIntent();
+        String org_id = iGet.getStringExtra("org_id");
         // Байгууллагын мэдээллийг API аас унших функц
         getOrganization();
 

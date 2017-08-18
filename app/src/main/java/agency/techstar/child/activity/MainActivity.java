@@ -187,20 +187,18 @@ public class MainActivity extends AppCompatActivity
         int g = random.nextInt(256);
         int b = random.nextInt(256);
         toolbar.setBackgroundColor(Color.rgb(r,g,b));
-        drawer.setBackgroundColor(Color.rgb(r,g,b));
-        navigation.setBackgroundColor(Color.rgb(r,g,b));
-        navigationView.setBackgroundColor(Color.rgb(r,g,b));
+
     }
 
-   @Override
-   protected void onResume() {
-         super.onResume();
-         shakeSensor.register();
-           }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        shakeSensor.register();
+    }
     @Override
     protected void onPause() {
-         super.onPause();
-         shakeSensor.deregister();
+        super.onPause();
+        shakeSensor.deregister();
     }
 }
 

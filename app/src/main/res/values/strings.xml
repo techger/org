@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">YellowBook</string>
+    <string name="app_name">YOUTH HEALTH</string>
     <string name="title_home">Нүүр</string>
     <string name="title_news">Байгууллага</string>
     <string name="title_map">Байршил</string>
-    <string name="title_activity_main">Шар Ном</string>
+    <string name="title_activity_main">YOUTH HEALTH</string>
     <string name="title_activity_detail">Дэлгэрэнгүй</string>
     <string name="title_activity_web">Вэб</string>
 
