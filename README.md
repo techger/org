@@ -9,7 +9,7 @@
 ### Screens
 
 <img src="https://github.com/doljko/youth-health/blob/master/art/1_splash.png" align="left" width="150px"/>
-<img src="https://github.com/doljko/youth-health/blob/master/art/2_home.png.png" align="left" width="150px"/>
+<img src="https://github.com/doljko/youth-health/blob/master/art/2_home.png" align="left" width="150px"/>
 <img src="https://github.com/doljko/youth-health/blob/master/art/3_list.png" align="left" width="150px"/>
 <img src="https://github.com/doljko/youth-health/blob/master/art/4_detail.png" align="left" width="150px"/>
 <img src="https://github.com/doljko/youth-health/blob/master/art/5_nav.png"  width="150px"/>
