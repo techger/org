@@ -130,5 +130,4 @@ public class ProjectFragment extends Fragment {
             }
         });
     }
-
 }
