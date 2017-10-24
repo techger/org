@@ -6,6 +6,8 @@
       <module fileurl="file://C:\Users\Dolly\AndroidStudioProjects\YelBook\YellowBook.iml" filepath="C:\Users\Dolly\AndroidStudioProjects\YelBook\YellowBook.iml" />
       <module fileurl="file://C:\Users\Dolly\AndroidStudioProjects\YelBook\.idea\YellowBook.iml" filepath="C:\Users\Dolly\AndroidStudioProjects\YelBook\.idea\YellowBook.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/org.iml" filepath="$PROJECT_DIR$/.idea/org.iml" />
     </modules>
   </component>
 </project>

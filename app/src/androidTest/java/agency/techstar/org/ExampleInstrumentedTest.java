@@ -1,4 +1,4 @@
-package agency.techstar.child;
+package agency.techstar.org;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

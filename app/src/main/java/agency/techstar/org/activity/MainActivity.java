@@ -1,4 +1,4 @@
-package agency.techstar.child.activity;
+package agency.techstar.org.activity;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -20,15 +20,14 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.RelativeLayout;
 
 import java.util.Random;
 
-import agency.techstar.child.R;
-import agency.techstar.child.fragments.MapFragment;
-import agency.techstar.child.fragments.OrgFragment;
-import agency.techstar.child.fragments.ProjectFragment;
-import agency.techstar.child.utils.ShakeSensor;
+import agency.techstar.org.R;
+import agency.techstar.org.fragments.MapFragment;
+import agency.techstar.org.fragments.OrgFragment;
+import agency.techstar.org.fragments.ProjectFragment;
+import agency.techstar.org.utils.ShakeSensor;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, ShakeSensor.ShakeListener {

@@ -1,4 +1,4 @@
-package agency.techstar.child.fragments;
+package agency.techstar.org.fragments;
 
 import android.os.Bundle;
 import android.app.Fragment;
@@ -15,7 +15,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import agency.techstar.child.R;
+import agency.techstar.org.R;
 
 public class MapFragment extends Fragment {
     MapView mMapView;

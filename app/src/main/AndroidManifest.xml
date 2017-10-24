@@ -24,7 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="agency.techstar.child.activity.MainActivity"
+            android:name="agency.techstar.org.activity.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -36,7 +36,7 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity
-            android:name="agency.techstar.child.activity.SplashActivity"
+            android:name="agency.techstar.org.activity.SplashActivity"
             android:label="@string/title_activity_splash"
             android:theme="@style/AppThemeFull">
             <intent-filter>
@@ -46,11 +46,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="agency.techstar.child.activity.ProjectDetaikActivity"
+            android:name="agency.techstar.org.activity.ProjectDetaikActivity"
             android:label="@string/title_activity_baiguullaga"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="agency.techstar.child.activity.AboutUsActivity"
+            android:name="agency.techstar.org.activity.AboutUsActivity"
             android:label="@string/title_activity_about_us"
             android:theme="@style/AppTheme" />
 
@@ -61,8 +61,8 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/google_map_api" />
 
-        <activity android:name="agency.techstar.child.activity.WebActivity" />
-        <activity android:name="agency.techstar.child.activity.OrgDetailActivity"></activity>
+        <activity android:name="agency.techstar.org.activity.WebActivity" />
+        <activity android:name="agency.techstar.org.activity.OrgDetailActivity"></activity>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package agency.techstar.child;
+package agency.techstar.org;
 
 /**
  * Created by Dolly on 8/1/2017.

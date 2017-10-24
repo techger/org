@@ -1,4 +1,4 @@
-package agency.techstar.child;
+package agency.techstar.org;
 
 import org.junit.Test;
 

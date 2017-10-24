@@ -1,4 +1,4 @@
-package agency.techstar.child.adapter;
+package agency.techstar.org.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,10 +14,10 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import agency.techstar.child.AppConfig;
-import agency.techstar.child.R;
-import agency.techstar.child.activity.OrgDetailActivity;
-import agency.techstar.child.utils.ImageLoader;
+import agency.techstar.org.AppConfig;
+import agency.techstar.org.R;
+import agency.techstar.org.activity.OrgDetailActivity;
+import agency.techstar.org.utils.ImageLoader;
 
 /**
  * Created by Dolly on 8/1/2017.

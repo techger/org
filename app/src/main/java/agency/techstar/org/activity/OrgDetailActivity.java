@@ -1,4 +1,4 @@
-package agency.techstar.child.activity;
+package agency.techstar.org.activity;
 
 import android.Manifest;
 import android.content.Intent;
@@ -34,8 +34,8 @@ import org.json.JSONArray;
 
 import java.io.IOException;
 
-import agency.techstar.child.AppConfig;
-import agency.techstar.child.R;
+import agency.techstar.org.AppConfig;
+import agency.techstar.org.R;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -45,7 +45,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
-public class ProjectDetaikActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class OrgDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     ImageView imgPreview;
     TextView txtText, txtSubText;
@@ -53,14 +53,14 @@ public class ProjectDetaikActivity extends AppCompatActivity implements OnMapRea
     TextView txtAlert;
     CoordinatorLayout coordinatorLayout;
     Handler mHandler;
-    String Project_image, Project_name, Project_about, Project_phone, Project_email, Project_Web, Project_fb;
+    String Organization_image, Organization_name, Organization_about, Organization_phone, Organization_email, Organization_Web, Organization_Fb, Organization_Location;
     MapView mapView;
     private GoogleMap googleMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_project_detail);
+        setContentView(R.layout.activity_org_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -74,30 +74,23 @@ public class ProjectDetaikActivity extends AppCompatActivity implements OnMapRea
         txtDescription = (WebView) findViewById(R.id.txtDescription);
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_content);
         mHandler = new Handler(Looper.getMainLooper());
+
         FloatingActionButton webbutton = (FloatingActionButton) findViewById(R.id.btnWeb);
         FloatingActionButton callbutton = (FloatingActionButton) findViewById(R.id.btnCall);
         FloatingActionButton emailbutton = (FloatingActionButton) findViewById(R.id.btnEmail);
         FloatingActionButton fbbutton = (FloatingActionButton) findViewById(R.id.btnAdd);
 
-        webbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ProjectDetaikActivity.this, WebActivity.class));
-            }
-        });
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.mapFragment);
-
-        mapFragment.getMapAsync(this);
-
-        getProduct();
+        Intent iGet = getIntent();
+        String org_id = iGet.getStringExtra("org_id");
+        // Байгууллагын мэдээллийг API аас унших функц
+        getOrganization();
 
         webbutton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Intent web = new Intent(ProjectDetaikActivity.this, WebActivity.class);
-                web.putExtra("org_web", Project_Web);
+                Intent web = new Intent(OrgDetailActivity.this, WebActivity.class);
+                web.putExtra("org_web", Organization_Web);
                 startActivity(web);
             }
         });
@@ -106,15 +99,9 @@ public class ProjectDetaikActivity extends AppCompatActivity implements OnMapRea
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + Project_phone));
-                if (ActivityCompat.checkSelfPermission(ProjectDetaikActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + Organization_phone));
+                if (ActivityCompat.checkSelfPermission(OrgDetailActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+
                     return;
                 }
                 startActivity(intent);
@@ -125,7 +112,7 @@ public class ProjectDetaikActivity extends AppCompatActivity implements OnMapRea
             @Override
             public void onClick(View v) {
                 Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                        "mailto",Project_email, null));
+                        "mailto",Organization_email, null));
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Гарчиг");
                 emailIntent.putExtra(Intent.EXTRA_TEXT, "Техт");
                 startActivity(Intent.createChooser(emailIntent, "Таны и-мэйл илгээгдэж байна..."));
@@ -136,11 +123,17 @@ public class ProjectDetaikActivity extends AppCompatActivity implements OnMapRea
 
             @Override
             public void onClick(View v) {
-                Intent web = new Intent(ProjectDetaikActivity.this, WebActivity.class);
-                web.putExtra("org_web", Project_fb);
+                Intent web = new Intent(OrgDetailActivity.this, WebActivity.class);
+                web.putExtra("org_web", Organization_Fb);
                 startActivity(web);
             }
         });
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.mapFragment);
+
+        mapFragment.getMapAsync(this);
+
     }
 
     @Override
@@ -154,14 +147,14 @@ public class ProjectDetaikActivity extends AppCompatActivity implements OnMapRea
         }
     }
 
-    public void getProduct() {
+    public void getOrganization() {
 
         Intent iGet = getIntent();
 
-        String uri = AppConfig.ProjectService;
+        String uri = AppConfig.OrgService;
 
         RequestBody formBody = new FormBody.Builder()
-                .add("project_id", iGet.getStringExtra("project_id"))
+                .add("org_id", iGet.getStringExtra("org_id"))
                 .build();
 
         Log.e("Дуудсан холбоос: ", uri);
@@ -184,22 +177,21 @@ public class ProjectDetaikActivity extends AppCompatActivity implements OnMapRea
                 final String res = response.body().string();
 
                 Log.e("Res: ", "" + res);
-
                 mHandler.post(() -> {
                     try {
                         JSONArray data = new JSONArray(res);
                         for (int i = 0; i < data.length(); i++) {
-                            Project_image = data.getJSONObject(i).getString("project_image");
-                            Project_name = data.getJSONObject(i).getString("project_name");
-                            Project_about = data.getJSONObject(i).getString("project_about");
-                            Project_phone = data.getJSONObject(i).getString("project_phone");
-                            Project_email = data.getJSONObject(i).getString("project_email");
-                            Project_Web = data.getJSONObject(i).getString("project_web");
-                            Project_fb = data.getJSONObject(i).getString("project_fb");
+                            Organization_image = data.getJSONObject(i).getString("org_image");
+                            Organization_name = data.getJSONObject(i).getString("org_name");
+                            Organization_about = data.getJSONObject(i).getString("org_about");
+                            Organization_phone = data.getJSONObject(i).getString("org_phone");
+                            Organization_email = data.getJSONObject(i).getString("org_email");
+                            Organization_Web = data.getJSONObject(i).getString("org_web");
+                            Organization_Fb = data.getJSONObject(i).getString("org_fb");
+                            Organization_Location = data.getJSONObject(i).getString("org_location");
                         }
-
                         coordinatorLayout.setVisibility(View.VISIBLE);
-                        Picasso.with(getApplicationContext()).load(AppConfig.AdminPageURL + "/" +Project_image).placeholder(R.drawable.ic_image).into(imgPreview, new com.squareup.picasso.Callback() {
+                        Picasso.with(getApplicationContext()).load(AppConfig.AdminPageURL + "/"+ Organization_image).placeholder(R.drawable.ic_image).into(imgPreview, new com.squareup.picasso.Callback() {
                             @Override
                             public void onSuccess() {
                                 Bitmap bitmap = ((BitmapDrawable) imgPreview.getDrawable()).getBitmap();
@@ -216,8 +208,8 @@ public class ProjectDetaikActivity extends AppCompatActivity implements OnMapRea
                             }
                         });
 
-                        txtText.setText(Project_name);
-                        txtDescription.loadDataWithBaseURL("", Project_about, "text/html", "UTF-8", "");
+                        txtText.setText(Organization_name);
+                        txtDescription.loadDataWithBaseURL("", Organization_about, "text/html", "UTF-8", "");
                         txtDescription.setBackgroundColor(Color.parseColor("#ffffff"));
                         txtDescription.getSettings().setDefaultTextEncodingName("UTF-8");
 

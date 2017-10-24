@@ -1,4 +1,4 @@
-package agency.techstar.child.fragments;
+package agency.techstar.org.fragments;
 
 import android.os.Bundle;
 import android.app.Fragment;
@@ -18,9 +18,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import agency.techstar.child.AppConfig;
-import agency.techstar.child.adapter.OrgAdapter;
-import agency.techstar.child.R;
+import agency.techstar.org.AppConfig;
+import agency.techstar.org.adapter.OrgAdapter;
+import agency.techstar.org.R;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
