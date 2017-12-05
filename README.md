@@ -1,5 +1,7 @@
 # Org
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/64d4966e8e1a4355b37848c1e1185177)](https://www.codacy.com/app/tortuvshin/techstar-org?utm_source=github.com&utm_medium=referral&utm_content=techstar-inc/techstar-org&utm_campaign=badger)
+
 ### Download It
 
 <a href="https://play.google.com/store/apps/details?id=agency.techstar.yellowbook">
